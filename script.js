@@ -71,3 +71,10 @@ form.addEventListener('submit', function (e) {
     .setPopupContent('Workout')
     .openPopup();
 });
+
+// handle change on input field
+inputType.addEventListener('change', function () {
+  // select closest parent then toggle class
+  inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
+  inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+});
