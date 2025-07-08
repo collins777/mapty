@@ -26,18 +26,32 @@ if (navigator.geolocation) {
       // when browser gets location, update map
       const map = L.map('map').setView(coords, 13);
 
-      // Option 3: Stamen Toner (High contrast, minimal)
-
-      // Option 2: CartoDB Positron (clean, minimal style)
+      // display map in browser
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-        .openPopup();
+      // event listener
+      map.on('click', function (mapEvent) {
+        console.log(mapEvent);
+        const { lat, lng } = mapEvent.latlng;
+
+        // add location pin to map, configure popup, set popup content
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: 'running-popup',
+            })
+          )
+          .setPopupContent('Workout')
+          .openPopup();
+      });
     },
     function (error) {
       console.log('Geolocation error code:', error.code);
