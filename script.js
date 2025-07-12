@@ -52,7 +52,7 @@ if (navigator.geolocation) {
   );
 }
 
-// ----------------------------------------------- form event listener
+// ----------------------------------------------- form submission event listener
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -82,7 +82,7 @@ form.addEventListener('submit', function (e) {
     .openPopup();
 });
 
-// listen for change on input type
+// -----------------------------------------------  listen for change on input type
 inputType.addEventListener('change', function () {
   // toggle hidden class on closest parent form__row
   inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
